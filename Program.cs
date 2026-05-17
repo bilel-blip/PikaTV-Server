@@ -16,8 +16,12 @@ var app = builder.Build();
 // قاعدة بيانات تجريبية للأكواد والروابط الخاصة بالمشتركين
 var userSubscriptions = new Dictionary<string, string>
 {
-    { "PIKA-112233", "http://server.com:8080/live/user1/pass1/1.m3u8" },
-    { "PIKA-998877", "http://server.com:8080/live/user2/pass2/2.m3u8" }
+    { "131189", "http://v3tv.live:80/get.php?username=drmtv30_311086&password=2IAIkYmK&type=m3u_plus
+
+" },
+    { "1010", "http://96122-low.tx-4kott.com:80/get.php?username=411ae93831&password=3ff865fe8e20&type=m3u_plus
+
+" }
 };
 
 // الرابط الذي سيتصل به تطبيق الكمبيوتر للتأكد من الكود
