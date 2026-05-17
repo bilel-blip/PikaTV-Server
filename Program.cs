@@ -1,40 +1,48 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// إعداد المنفذ (Port) ليتوافق مع السيرفر السحابي
-builder.WebHost.ConfigureKestrel(options =>
+// تفعيل ميزة الـ CORS لضمان استقبال الطلبات من التطبيق دون قيود أمنية
+builder.Services.AddCors(options =>
 {
-    options.ListenAnyIP(8080);
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
 });
 
 var app = builder.Build();
+app.UseCors("AllowAll");
 
-// قاعدة بيانات تجريبية للأكواد والروابط الخاصة بالمشتركين
-var userSubscriptions = new Dictionary<string, string>
+// 🔑 [جدول التفعيل الرئيسي]: يمكنك إضافة أو تعديل أي كود هنا بكل سهولة وسلاسة
+var activationCodes = new Dictionary<string, string>
 {
-    { "131189", "http://v3tv.live:80/get.php?username=drmtv30_311086&password=2IAIkYmK&type=m3u_plus
-
-" },
-    { "1010", "http://96122-low.tx-4kott.com:80/get.php?username=411ae93831&password=3ff865fe8e20&type=m3u_plus
-
-" }
+    { "131189", "http://v3tv.live:80/get.php?username=drmtv30_311086&password=2IAIkYmK&type=m3u_plus" },
+    { "2026", "http://96122-low.tx-4kott.com:80/get.php?username=411ae93831&password=3ff865fe8e20&type=m3u_plus" }
+    // لإضافة مستخدم أو كود جديد، فقط أضف سطر جديد هنا بنفس الطريقة تماماً
 };
 
-// الرابط الذي سيتصل به تطبيق الكمبيوتر للتأكد من الكود
+// 🌐 الـ Endpoint الخاص بالتحقق من الأكواد للتطبيق الخاص بك
 app.MapGet("/api/activation/verify/{code}", (string code) =>
 {
-    if (userSubscriptions.TryGetValue(code, out var url))
+    if (string.IsNullOrWhiteSpace(code))
     {
-        return Results.Ok(new { success = true, url = url, message = "Welcome to PikaTV" });
+        return Results.BadRequest(new { message = "كود التفعيل لا يمكن أن يكون فارغاً." });
     }
-    return Results.Json(new { success = false, message = "كود التفعيل غير صحيح!" }, statusCode: 401);
+
+    // البحث في الجدول الذكي عن الكود المرسل
+    if (activationCodes.TryGetValue(code.Trim(), out var m3uUrl))
+    {
+        return Results.Ok(new { m3uUrl = m3uUrl });
+    }
+
+    // إذا لم يتم العثور على الكود
+    return Results.NotFound(new { message = "كود التفعيل غير صحيح أو منتهي الصلاحية." });
 });
 
-// صفحة ترحيبية أساسية للتأكد من أن السيرفر يعمل
-app.MapGet("/", () => "PikaTV Server is Running!");
-
+// تشغيل السيرفر تلقائياً على المنفذ المطلوب
 app.Run();
