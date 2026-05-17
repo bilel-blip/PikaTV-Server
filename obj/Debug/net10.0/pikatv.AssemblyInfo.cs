@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pikatv")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5fcfd02ab8bbc53196a21d7672559461c0992c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a66ebda8ff6c68f61a46b932698c584694275a4a")]
 [assembly: System.Reflection.AssemblyProductAttribute("pikatv")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pikatv")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
