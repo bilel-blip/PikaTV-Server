@@ -21,8 +21,8 @@ app.UseCors("AllowAll");
 // 🔑 [جدول التفعيل الرئيسي]: يمكنك إضافة أو تعديل أي كود هنا بكل سهولة وسلاسة
 var activationCodes = new Dictionary<string, string>
 {
-    { "131189", "http://v3tv.live:80/get.php?username=drmtv30_311086&password=2IAIkYmK&type=m3u_plus" },
-    { "2026", "http://96122-low.tx-4kott.com:80/get.php?username=411ae93831&password=3ff865fe8e20&type=m3u_plus" }
+    { "131189", "http://v3tv.live:80/get.php?username=drmtv30_311086&password=2IAIkYmK&type=m3us" },
+    { "2026", "http://96122-low.tx-4kott.com:80/get.php?username=411ae93831&password=3ff865fe8e20&type=m3u" }
     // لإضافة مستخدم أو كود جديد، فقط أضف سطر جديد هنا بنفس الطريقة تماماً
 };
 
