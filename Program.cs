@@ -23,7 +23,7 @@ var activationCodes = new Dictionary<string, XtreamAccount>
 {
     { 
         "PIKA-112233", 
-        new XtreamAccount("http://kljx7.m4rv-el.space:2095", "user_5432157882", "password_77643245") 
+        new XtreamAccount("http//kljx7.m4rv-el.space:2095", "user_5432157882", "password_77643245") 
     }
 };
 
