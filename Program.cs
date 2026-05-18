@@ -26,7 +26,7 @@ var activationCodes = new Dictionary<string, XtreamAccount>
 {
     { 
         "112233", 
-        new XtreamAccount("http://v3tv.live:80", "user_drmtv30_311086", "password_2IAIkYmK&type") 
+        new XtreamAccount("http://kljx7.m4rv-el.space:2095", "user_5432157882", "password_77643245") 
     }
     // يمكنك إضافة أكواد أخرى هنا بنفس الطريقة تماماً
 };
