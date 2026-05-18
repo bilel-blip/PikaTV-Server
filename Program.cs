@@ -18,12 +18,12 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowAll");
 
-// 🔑 [جدول الـ Xtream الرئيسي] ضع هنا بيانات السيرفر الشغال والمضمون لديك
+// 🔑 ضع هنا بيانات السيرفر الشغال والمضمون لديك [الرئيسي Xtream جدول الـ]
 var activationCodes = new Dictionary<string, XtreamAccount>
 {
-    { 
-        "1111", 
-        new XtreamAccount("http://paket7e.org:8080", "user_buraksezer021888", "password_aejyrefq9Q") 
+    {
+        "1111", // كود التفعيل
+        new XtreamAccount("http://paket7e.org:8080", "user_5432157882", "password_77643245") // السيرفر، المستخدم، الباسورد
     }
 };
 
