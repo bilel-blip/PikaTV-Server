@@ -22,8 +22,8 @@ app.UseCors("AllowAll");
 var activationCodes = new Dictionary<string, XtreamAccount>
 {
     { 
-        "131189", 
-        new XtreamAccount("http://varnishrcdn.com", "user_hameedha2", "password_XRewmb2XTY") 
+        "1111", 
+        new XtreamAccount("http://paket7e.org:8080", "user_buraksezer021888", "password_aejyrefq9Q") 
     }
 };
 
