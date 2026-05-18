@@ -22,8 +22,8 @@ app.UseCors("AllowAll");
 var activationCodes = new Dictionary<string, XtreamAccount>
 {
     {
-        "1111", // كود التفعيل
-        new XtreamAccount("http://paket7e.org:8080", "user_5432157882", "password_77643245") // السيرفر، المستخدم، الباسورد
+        "0101", // كود التفعيل
+        new XtreamAccount("http://uniqueott.com:80", "user_uh4ephA5RX", "password_colorful9peace") // السيرفر، المستخدم، الباسورد
     }
 };
 
