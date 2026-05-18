@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// تفعيل الـ CORS لتسهيل استقبال الطلبات من تطبيقك
+// تفعيل حزمة CORS لضمان تواصل سلس مع التطبيق
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -18,20 +18,16 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowAll");
 
-// هيكل كائن مخصص لبيانات الـ Xtream لمنع أخطاء الـ Build
-public record XtreamAccount(string ServerUrl, string Username, string Password);
-
-// 🔑 جدول التفعيل الرئيسي بنظام Xtream Codes
+// 🔑 [جدول الـ Xtream الأساسي] ضع روابطك وبيانات الاشتراك الحقيقية هنا
 var activationCodes = new Dictionary<string, XtreamAccount>
 {
     { 
-        "112233", 
+        "PIKA-112233", 
         new XtreamAccount("http://kljx7.m4rv-el.space:2095", "user_5432157882", "password_77643245") 
     }
-    // يمكنك إضافة أكواد أخرى هنا بنفس الطريقة تماماً
 };
 
-// الـ Endpoint الخاص بالتحقق
+// الـ Endpoint المستقر لاستقبال طلبات التفعيل
 app.MapGet("/api/activation/verify/{code}", (string code) =>
 {
     if (string.IsNullOrWhiteSpace(code))
@@ -53,3 +49,6 @@ app.MapGet("/api/activation/verify/{code}", (string code) =>
 });
 
 app.Run();
+
+// 🛠️ تعريف هيكل البيانات بشكل خارجي سليم لمنع أخطاء الـ Compilation
+public record XtreamAccount(string ServerUrl, string Username, string Password);
