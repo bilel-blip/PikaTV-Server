@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// تفعيل حزمة CORS لضمان تواصل سلس مع التطبيق
+// تفعيل الـ CORS لضمان استقبال الطلبات من التطبيق دون قيود
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -18,16 +18,16 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseCors("AllowAll");
 
-// 🔑 [جدول الـ Xtream الأساسي] ضع روابطك وبيانات الاشتراك الحقيقية هنا
+// 🔑 [جدول الـ Xtream الرئيسي] ضع هنا بيانات السيرفر الشغال والمضمون لديك
 var activationCodes = new Dictionary<string, XtreamAccount>
 {
     { 
-        "PIKA-112233", 
+        "112233", 
         new XtreamAccount("http//kljx7.m4rv-el.space:2095", "user_5432157882", "password_77643245") 
     }
 };
 
-// الـ Endpoint المستقر لاستقبال طلبات التفعيل
+// الـ Endpoint الخاص بالتحقق من الأكواد
 app.MapGet("/api/activation/verify/{code}", (string code) =>
 {
     if (string.IsNullOrWhiteSpace(code))
@@ -37,9 +37,10 @@ app.MapGet("/api/activation/verify/{code}", (string code) =>
 
     if (activationCodes.TryGetValue(code.Trim(), out var account))
     {
+        // إرسال البيانات بحروف صغيرة صريحة لتجنب أي تحويل تلقائي يعطل التطبيق
         return Results.Ok(new 
         { 
-            serverUrl = account.ServerUrl, 
+            serverurl = account.ServerUrl, 
             username = account.Username, 
             password = account.Password 
         });
@@ -50,5 +51,5 @@ app.MapGet("/api/activation/verify/{code}", (string code) =>
 
 app.Run();
 
-// 🛠️ تعريف هيكل البيانات بشكل خارجي سليم لمنع أخطاء الـ Compilation
+// هيكل البيانات الثابت
 public record XtreamAccount(string ServerUrl, string Username, string Password);
